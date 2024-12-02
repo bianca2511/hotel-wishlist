@@ -4,7 +4,7 @@ export const NewWishlist = () => {
   const [wishlistName, setWishlistName] = useState("");
 
   const newWishlist = async () => {
-    const response = await fetch("/api/wishlist", {
+    const response = await fetch("/api/wishlists", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name: wishlistName }),

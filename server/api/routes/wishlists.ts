@@ -5,7 +5,7 @@ const wishlistRouter = new Router();
 const wishlists: Record<string, string[]> = {};
 
 //create new wishlist
-wishlistRouter.post("/api/wishlist", async (context) => {
+wishlistRouter.post("/api/wishlists", async (context) => {
     const value = await context.request.body().value;
     const { name } = value;
 
@@ -47,7 +47,7 @@ wishlistRouter.post("/api.wishlists/:name/hotel", async (context) => {
 
 
 //remove a hotel from a wishlist
-wishlistRouter.delete("/api/wishlist/:name/hotel/:hotelId", (context) => {
+wishlistRouter.delete("/api/wishlists/:name/hotel/:hotelId", (context) => {
     const { name, hotelId } = context.params;
   
     if (!wishlists[name]) {
@@ -61,7 +61,7 @@ wishlistRouter.delete("/api/wishlist/:name/hotel/:hotelId", (context) => {
   });
 
 //display a wishlist
-wishlistRouter.get("/api/wishlist/:name", (context) => {
+wishlistRouter.get("/api/wishlists/:name", (context) => {
     const { name } = context.params;
   
     if (!wishlists[name]) {
