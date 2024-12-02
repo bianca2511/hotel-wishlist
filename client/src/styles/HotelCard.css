@@ -41,5 +41,13 @@
 }
 
 .wishlist-button {
-  font-size: medium;
+  font-size: large;
+  background-color: #ffb404;
+  border-radius: 8px;
+  padding: 0.5em;
+}
+
+.wishlist-button:hover{
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }

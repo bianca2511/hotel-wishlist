@@ -17,7 +17,7 @@ export default function Index() {
   return (
     <main>
       <h1>Welcome to the Hotel Wishlist App</h1>
-      <p>Click on a hotel below to learn more.</p>
+      <p>Create custom wishlists and sort hotels your way ❤️</p>
       {hotels.map((hotel: HotelType) => {
         return (
           <HotelCard key={hotel.id} hotel={hotel}></HotelCard>
