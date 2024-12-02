@@ -21,7 +21,7 @@ export default function Index() {
       <NavBar></NavBar>
       <NewWishlist></NewWishlist>
       <h1>Welcome to the Hotel Wishlist App</h1>
-      <p>Create custom wishlists and sort hotels your way ❤️</p>
+      <p>Browse hotels, create custom wishlists and sort everything your way ❤️</p>
       {hotels.map((hotel: HotelType) => {
         return <HotelCard key={hotel.id} hotel={hotel}></HotelCard>;
       })}
