@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { Dino } from "../types.ts";
+import { HotelType } from "../types.ts";
 
-export default function Dinosaur() {
-  const { selectedDinosaur } = useParams();
-  const [dinosaur, setDino] = useState<Dino>({ name: "", description: "" });
+export default function Hotel() {
+  const { selectedHotel } = useParams();
+  const [hotel, setHotel] = useState<HotelType>();
 
-  useEffect(() => {
+  useEffect(() => { 
     (async () => {
-      const resp = await fetch(`/api/dinosaurs/${selectedDinosaur}`);
-      const dino = await resp.json() as Dino;
-      setDino(dino);
+      const resp = await fetch(`/api/hotels/${selectedHotel}`);
+      const HotelType = await resp.json() as HotelType;
+      setHotel(HotelType);
     })();
-  }, [selectedDinosaur]);
+  }, [selectedHotel]);
 
   return (
     <div>
-      <h1>{dinosaur.name}</h1>
-      <p>{dinosaur.description}</p>
-      <Link to="/">🠠 Back to all dinosaurs</Link>
+      <h1>{hotel.name}</h1>
+      <p>{hotel.description}</p>
+      <Link to="/">🠠 Back to all hotels</Link>
     </div>
   );
 }

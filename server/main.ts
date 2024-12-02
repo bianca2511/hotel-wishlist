@@ -5,25 +5,26 @@ import { oakCors } from "@tajpouria/cors";
 import routeStaticFilesFrom from "./util/routeStaticFilesFrom.ts";
 import data from "./api/data.json" with { type: "json" };
 
-
 export const app = new Application();
 const router = new Router();
 
-
-router.get("/api/dinosaurs", (context) => {
-  context.response.body = data;
+// Get all hotels
+router.get("/api/hotels", (context) => {
+  context.response.body = data.hotels; // Access the `hotels` property
 });
 
-router.get("/api/dinosaurs/:dinosaur", (context) => {
-  if (!context?.params?.dinosaur) {
-    context.response.body = "No dinosaur name provided.";
+// Get a specific hotel by name
+router.get("/api/hotels/:hotel", (context) => {
+  if (!context?.params?.hotel) {
+    context.response.body = "No hotel name provided.";
+    return;
   }
 
-  const dinosaur = data.find((item) =>
-    item.name.toLowerCase() === context.params.dinosaur.toLowerCase()
+  const hotel = data.hotels.find((item) =>
+    item.name.toLowerCase() === context.params.hotel.toLowerCase()
   );
 
-  context.response.body = dinosaur ?? "No dinosaur found.";
+  context.response.body = hotel ?? "No hotel found.";
 });
 
 app.use(oakCors());

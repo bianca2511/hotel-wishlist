@@ -1,30 +1,30 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Dino } from "../types.ts";
+import { HotelType } from "../types.ts"; 
 
 export default function Index() {
-  const [dinosaurs, setDinosaurs] = useState<Dino[]>([]);
+  const [hotels, setHotels] = useState<HotelType[]>([]);
 
   useEffect(() => {
     (async () => {
-      const response = await fetch(`/api/dinosaurs/`);
-      const allDinosaurs = await response.json() as Dino[];
-      setDinosaurs(allDinosaurs);
+      const response = await fetch(`/api/hotels/`);
+      const allHotels = await response.json() as HotelType[];
+      setHotels(allHotels);
     })();
   }, []);
 
   return (
     <main>
-      <h1>Welcome to the Dinosaur app</h1>
-      <p>Click on a dinosaur below to learn more.</p>
-      {dinosaurs.map((dinosaur: Dino) => {
+      <h1>Welcome to the Hotel Wishlist App</h1>
+      <p>Click on a hotel below to learn more.</p>
+      {hotels.map((hotel: HotelType) => {
         return (
           <Link
-            to={`/${dinosaur.name.toLowerCase()}`}
-            key={dinosaur.name}
-            className="dinosaur"
+            to={`/${hotel.name.toLowerCase()}`}
+            key={hotel.id}
+            className="hotel"
           >
-            {dinosaur.name}
+            {hotel.name} - {hotel.stars}⭐
           </Link>
         );
       })}
