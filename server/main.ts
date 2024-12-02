@@ -1,4 +1,3 @@
-// deno-lint-ignore-file no-unused-vars
 import { Application } from "jsr:@oak/oak/application";
 import { oakCors } from "@tajpouria/cors";
 import routeStaticFilesFrom from "./util/routeStaticFilesFrom.ts";
