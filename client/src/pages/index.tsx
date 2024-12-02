@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HotelType } from "../types.ts"; 
+import { HotelCard } from "../components/HotelCard.tsx";
 
 export default function Index() {
   const [hotels, setHotels] = useState<HotelType[]>([]);
@@ -19,13 +20,7 @@ export default function Index() {
       <p>Click on a hotel below to learn more.</p>
       {hotels.map((hotel: HotelType) => {
         return (
-          <Link
-            to={`/${hotel.name.toLowerCase()}`}
-            key={hotel.id}
-            className="hotel"
-          >
-            {hotel.name} - {hotel.stars}⭐
-          </Link>
+          <HotelCard key={hotel.id} hotel={hotel}></HotelCard>
         );
       })}
     </main>
