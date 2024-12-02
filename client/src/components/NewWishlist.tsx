@@ -1,6 +1,6 @@
 import{ useState } from "react";
 
-export const NewWishlist = () => {
+const NewWishlist: React.FC = () => {
   const [wishlistName, setWishlistName] = useState("");
 
   const newWishlist = async () => {
@@ -31,3 +31,5 @@ export const NewWishlist = () => {
     </div>
   );
 };
+
+export default NewWishlist;

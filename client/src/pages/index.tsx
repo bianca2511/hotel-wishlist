@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { HotelType } from "../types.ts";
 import { HotelCard } from "../components/HotelCard.tsx";
-import { NewWishlist } from "../components/NewWishlist.tsx";
+import  NewWishlist  from "../components/NewWishlist.tsx";
+import NavBar from "../components/NavBar.tsx";
 
 export default function Index() {
   const [hotels, setHotels] = useState<HotelType[]>([]);
@@ -17,6 +18,7 @@ export default function Index() {
 
   return (
     <main>
+      <NavBar></NavBar>
       <NewWishlist></NewWishlist>
       <h1>Welcome to the Hotel Wishlist App</h1>
       <p>Create custom wishlists and sort hotels your way ❤️</p>
