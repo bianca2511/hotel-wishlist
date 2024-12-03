@@ -9,7 +9,7 @@ type HotelCardProps = {
 export const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
   return (
     <div className="hotel-card">
-      <img src="../../public/images/dog.jpg" className="hotel-photo"></img>
+      <img src="/images/dog.jpg" className="hotel-photo"></img>
       <div className="hotel-info">
         <div className="hotel-header">
           <h2>{hotel.name}</h2>
