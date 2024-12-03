@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/NavBar.css";
+import { Link } from "react-router-dom";
 
 const NavBar: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const NavBar: React.FC = () => {
             <a href="/">Explore Hotels</a>
           </li>
           <li>
-            <a href="/wishlists">Your Wishlists</a>
+            <Link to="/wishlists">Your Wishlists</Link>{" "}
           </li>
         </ul>
       </div>
