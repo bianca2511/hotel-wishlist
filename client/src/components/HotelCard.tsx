@@ -89,7 +89,14 @@ export const HotelCard: React.FC<HotelCardProps> = ({
 
   return (
     <div className="hotel-card">
-      <img src="/images/dog.jpg" className="hotel-photo" alt="Hotel" />
+      <img
+        className="hotel-photo"
+        src={`/images/${hotel.photo}`}
+        alt={hotel.name}
+        onError={(e) => {
+          e.currentTarget.src = "/images/dog.jpg"; //use the default image
+        }}
+      />
       <div className="hotel-info">
         <div className="hotel-header">
           <h2>{hotel.name}</h2>
