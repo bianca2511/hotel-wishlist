@@ -1,17 +1,16 @@
 import { HotelType } from "../types.ts";
 import "../styles/HotelCard.css";
 
-
 interface WishlistHotelCardProps {
-    hotel: HotelType;
-    wishlistName: string;
-    onRemove: (hotelId: number) => void;
-  }
+  hotel: HotelType;
+  wishlistName: string;
+  onRemove: (hotelId: number) => void;
+}
 
 export const WishlistHotelCard: React.FC<WishlistHotelCardProps> = ({
   hotel,
   wishlistName,
-  onRemove
+  onRemove,
 }) => {
   const removeHotel = async () => {
     try {
@@ -33,7 +32,14 @@ export const WishlistHotelCard: React.FC<WishlistHotelCardProps> = ({
 
   return (
     <div className="hotel-card">
-      <img src="/images/dog.jpg" className="hotel-photo" alt="Hotel" />
+      <img
+        className="hotel-photo"
+        src={`/images/${hotel.photo}`}
+        alt={hotel.name}
+        onError={(e) => {
+          e.currentTarget.src = "/images/dog.jpg"; //use the default image
+        }}
+      />{" "}
       <div className="hotel-info">
         <div className="hotel-header">
           <h2>{hotel.name}</h2>

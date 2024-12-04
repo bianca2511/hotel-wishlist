@@ -76,7 +76,7 @@ const Wishlists: React.FC = () => {
         {wishlists.map((wishlist: Wishlist) => (
           <div key={wishlist.name} className="hotel-list">
             <div className="wishlist-header">
-              <h2>Wishlist {wishlist.name}</h2>
+              <h2>{wishlist.name}</h2>
               <button
                 className="hide-show-wishlist"
                 onClick={() => toggleWishlistVisibility(wishlist.name)}
