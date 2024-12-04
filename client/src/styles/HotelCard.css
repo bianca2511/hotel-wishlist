@@ -4,9 +4,10 @@
   align-items: center;
   border-radius: 8px;
   padding: 2em;
-  margin: 2em;
+  margin: 1em;
   background-color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  width:80%;
   max-width: 480px;
 }
 
@@ -40,7 +41,7 @@
   height: 10em;
 }
 
-.wishlist-button {
+.wishlist-button, .remove-wishlist-button {
   font-size: large;
   background-color: #ffb404;
   border-radius: 8px;
@@ -89,4 +90,32 @@
 .dropdown-item:last-child {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .hotel-card {
+    /* flex-direction: column;  */
+    padding: 1em;
+    margin: 0.5em; 
+    max-height: 240px;
+  }
+
+  .hotel-photo {
+    width: 7em;
+    height: 7em;
+  }
+
+  .wishlist-button, .remove-wishlist-button {
+    font-size: 0.7em; 
+    padding: 0.5em; 
+  }
+
+  .hotel-info h2 {
+    font-size: 1.2em; 
+  }
+
+  .dropdown {
+    width: 6em;
+    top:2em
+  }
 }

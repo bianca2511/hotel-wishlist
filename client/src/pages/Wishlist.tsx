@@ -48,8 +48,8 @@ const Wishlists: React.FC = () => {
   };
 
   const handleRemoveHotel = (wishlistName: string, hotelId: number) => {
-    setWishlists((prevWishlists:Wishlist) =>
-      prevWishlists.map((wishlist:Wishlist) =>
+    setWishlists((prevWishlists: Wishlist) =>
+      prevWishlists.map((wishlist: Wishlist) =>
         wishlist.name === wishlistName
           ? {
               ...wishlist,
