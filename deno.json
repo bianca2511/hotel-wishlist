@@ -3,7 +3,8 @@
     "dev": "deno run -A --node-modules-dir=auto npm:vite & deno run server:start",
     "build": "deno run -A --node-modules-dir=auto npm:vite build",
     "server:start": "deno run -A --node-modules-dir --watch ./server/main.ts",
-    "serve": "deno task build && deno task server:start"
+    "serve": "deno task build && deno task server:start",
+    "test": "deno test -A --node-modules-dir"
   },
   "imports": {
     "@deno/vite-plugin": "npm:@deno/vite-plugin@^1.0.0",
@@ -18,17 +19,8 @@
     "vite": "npm:vite@^5.4.11"
   },
   "compilerOptions": {
-    "types": [
-      "react",
-      "react-dom",
-      "@types/react",
-      "@types/react-dom"
-    ],
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "deno.ns"
-    ],
+    "types": ["react", "react-dom", "@types/react", "@types/react-dom"],
+    "lib": ["dom", "dom.iterable", "deno.ns"],
     "jsx": "react-jsx",
     "jsxImportSource": "react"
   }
