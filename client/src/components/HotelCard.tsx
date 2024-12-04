@@ -10,7 +10,9 @@ type HotelCardProps = {
   hotel: HotelType;
 };
 
-export const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
+export const HotelCard: React.FC<HotelCardProps> = ({
+  hotel,
+}: HotelCardProps) => {
   const [wishlists, setWishlists] = useState<WishlistWithFlag[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -26,7 +28,9 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
       const updatedWishlists: WishlistWithFlag[] = data.wishlists.map(
         (wishlist: Wishlist) => ({
           ...wishlist,
-          containsHotel: wishlist.hotels.some((h: HotelType) => h.id === hotel.id),
+          containsHotel: wishlist.hotels.some(
+            (h: HotelType) => h.id === hotel.id
+          ),
         })
       );
       setWishlists(updatedWishlists);
@@ -38,7 +42,9 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
 
   //add the hotel to a wishlist if not already added
   const addToWishlist = async (wishlistName: string) => {
-    const wishlist = wishlists.find((w: { name: string; }) => w.name === wishlistName);
+    const wishlist = wishlists.find(
+      (w: { name: string }) => w.name === wishlistName
+    );
     if (wishlist?.containsHotel) {
       alert(`Hotel is already in wishlist "${wishlistName}"`);
       return;
@@ -62,11 +68,9 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
       const data = await response.json();
       alert(data.message);
 
-      setWishlists((prev:WishlistWithFlag[]) =>
+      setWishlists((prev: WishlistWithFlag[]) =>
         prev.map((w) =>
-          w.name === wishlistName
-            ? { ...w, containsHotel: true }
-            : w
+          w.name === wishlistName ? { ...w, containsHotel: true } : w
         )
       );
     } catch (error) {
@@ -80,7 +84,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
     if (!showDropdown) {
       await fetchWishlists();
     }
-    setShowDropdown((prev:boolean) => !prev);
+    setShowDropdown((prev: boolean) => !prev);
   };
 
   return (
@@ -104,16 +108,13 @@ export const HotelCard: React.FC<HotelCardProps> = ({ hotel }) => {
         )}
       </div>
       <div className="hotel-button">
-        <button
-          className="wishlist-button"
-          onClick={handleDropdownToggle}
-        >
+        <button className="wishlist-button" onClick={handleDropdownToggle}>
           Add to ❤️
         </button>
         {showDropdown && (
           <div className="dropdown">
             {wishlists.length > 0 ? (
-              wishlists.map((wishlist:WishlistWithFlag) => (
+              wishlists.map((wishlist: WishlistWithFlag) => (
                 <div
                   key={wishlist.name}
                   className="dropdown-item"

@@ -68,8 +68,8 @@ wishlistRouter.post("/api/wishlists/:name/:hotelID", (context) => {
 
 
 
-//remove a hotel from a wishlist
-wishlistRouter.delete("/api/wishlists/:name/hotel/:hotelId", (context) => {
+// Remove a hotel from a wishlist
+wishlistRouter.delete("/api/wishlists/:name/:hotelId", (context) => {
     const { name, hotelId } = context.params;
   
     if (!wishlists[name]) {
