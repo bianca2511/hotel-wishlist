@@ -55,12 +55,12 @@
 /* TODO: make it mobile friendly */
 
 .hotel-button {
-  position: relative; /* Position the dropdown relative to the button */
+  position: relative; 
 }
 
 .dropdown {
   position: absolute;
-  top: 40px; /* Adjust based on your button's height */
+  top: 40px; 
   left: 0;
   color: black;
   background-color: white;
