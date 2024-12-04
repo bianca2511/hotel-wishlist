@@ -16,7 +16,7 @@ export const WishlistHotelCard: React.FC<WishlistHotelCardProps> = ({
   const removeHotel = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/wishlists/${wishlistName}/hotels/${hotel.id}`,
+        `http://localhost:8000/api/wishlists/${wishlistName}/${hotel.id}`,
         { method: "DELETE" }
       );
 
