@@ -29,7 +29,7 @@ const Wishlists: React.FC = () => {
 
         const initialExpandedState: Record<string, boolean> = {};
         data.wishlists.forEach((wishlist: Wishlist) => {
-          initialExpandedState[wishlist.name] = true;
+          initialExpandedState[wishlist.name] = false;
         });
         setExpandedWishlists(initialExpandedState);
       } catch (err: unknown) {
@@ -71,8 +71,8 @@ const Wishlists: React.FC = () => {
   return (
     <main>
       <NavBar />
-      <div>
-        <h1>Your Wishlists</h1>
+      <div className="wishlist-content">
+      <h1>Your Wishlists</h1>
         {wishlists.map((wishlist: Wishlist) => (
           <div key={wishlist.name} className="hotel-list">
             <div className="wishlist-header">

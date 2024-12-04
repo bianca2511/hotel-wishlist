@@ -1,31 +1,37 @@
+.wishlist-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .hide-show-wishlist {
-    background-color: white; 
-    height: 3em;
-    max-width:5em;
-    border: none;
-    color: black;
-    padding: 1em;
-    border-radius: 8px;
-    font-size: small;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-  }
+  background-color: white;
+  height: 3em;
+  max-width: 5em;
+  border: none;
+  color: black;
+  padding: 1em;
+  border-radius: 8px;
+  font-size: small;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+}
 
-  .hotel-list {
-    background-color: #ffb404;
-    max-width: 600px;
-    padding: 2em;
-    border-radius: 8px;
-    margin-bottom: 3em;
-    color: black;
+.hotel-list {
+  background-color: #ffb404;
+  max-width: 600px;
+  padding: 2em;
+  border-radius: 8px;
+  margin-bottom: 1.5em;
+  color: black;
+  width:80%
+}
 
-  }
-
-  .wishlist-header {
-    display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
-    align-items: center;
-    gap: 2em;
-  }
+.wishlist-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2em;
+}
