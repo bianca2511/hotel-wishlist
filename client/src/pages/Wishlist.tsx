@@ -1,14 +1,9 @@
 // @deno-types="@types/react"
 import React, { useEffect, useState } from "react";
-import { HotelType } from "../types.ts";
+import {Wishlist } from "../types.ts";
 import NavBar from "../components/NavBar.tsx";
 import "../styles/Wishlist.css";
 import { WishlistHotelCard } from "../components/WishlistHotelCard.tsx";
-
-interface Wishlist {
-  name: string;
-  hotels: HotelType[];
-}
 
 const Wishlists: React.FC = () => {
   const [wishlists, setWishlists] = useState<Wishlist[]>([]);
