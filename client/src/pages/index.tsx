@@ -20,11 +20,11 @@ export default function Index() {
     <main>
       <NavBar></NavBar>
       <div className="index-content">
-        <NewWishlist></NewWishlist>
         <h1>Welcome to the Hotel Wishlist App</h1>
         <p>
           Browse hotels, create custom wishlists and sort everything your way ❤️
         </p>
+        <NewWishlist></NewWishlist>
         {hotels.map((hotel: HotelType) => {
           return <HotelCard key={hotel.id} hotel={hotel}></HotelCard>;
         })}
