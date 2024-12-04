@@ -1,6 +1,6 @@
 // @deno-types="@types/react"
 import React, { useEffect, useState } from "react";
-import { HotelType, WishlistWithFlag } from "../types.ts";
+import { HotelType } from "../types.ts";
 import NavBar from "../components/NavBar.tsx";
 import "../styles/Wishlist.css";
 import { WishlistHotelCard } from "../components/WishlistHotelCard.tsx";
