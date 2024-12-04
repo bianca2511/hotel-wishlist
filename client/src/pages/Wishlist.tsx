@@ -1,5 +1,6 @@
+// @deno-types="@types/react"
 import React, { useEffect, useState } from "react";
-import { HotelType } from "../types.ts";
+import { HotelType, WishlistWithFlag } from "../types.ts";
 import NavBar from "../components/NavBar.tsx";
 import "../styles/Wishlist.css";
 import { WishlistHotelCard } from "../components/WishlistHotelCard.tsx";
@@ -48,13 +49,13 @@ const Wishlists: React.FC = () => {
   };
 
   const handleRemoveHotel = (wishlistName: string, hotelId: number) => {
-    setWishlists((prevWishlists: Wishlist) =>
+    setWishlists((prevWishlists: Wishlist[]) =>
       prevWishlists.map((wishlist: Wishlist) =>
         wishlist.name === wishlistName
           ? {
-              ...wishlist,
-              hotels: wishlist.hotels.filter((hotel) => hotel.id !== hotelId),
-            }
+            ...wishlist,
+            hotels: wishlist.hotels.filter((hotel) => hotel.id !== hotelId),
+          }
           : wishlist
       )
     );
@@ -72,14 +73,15 @@ const Wishlists: React.FC = () => {
     <main>
       <NavBar />
       <div className="wishlist-content">
-      <h1>Your Wishlists</h1>
+        <h1>Your Wishlists</h1>
         {wishlists.map((wishlist: Wishlist) => (
           <div key={wishlist.name} className="hotel-list">
             <div className="wishlist-header">
               <h2>{wishlist.name}</h2>
               <button
                 className="hide-show-wishlist"
-                onClick={() => toggleWishlistVisibility(wishlist.name)}
+                onClick={() =>
+                  toggleWishlistVisibility(wishlist.name)}
               >
                 {expandedWishlists[wishlist.name] ? "Hide" : "Show"}
               </button>
@@ -87,22 +89,21 @@ const Wishlists: React.FC = () => {
 
             {expandedWishlists[wishlist.name] && (
               <div>
-                {wishlist.hotels.length > 0 ? (
-                  <div>
-                    {wishlist.hotels.map((hotel) => (
-                      <WishlistHotelCard
-                        key={hotel.id}
-                        hotel={hotel}
-                        wishlistName={wishlist.name}
-                        onRemove={(hotelId) =>
-                          handleRemoveHotel(wishlist.name, hotelId)
-                        }
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <p>No hotels in this wishlist</p>
-                )}
+                {wishlist.hotels.length > 0
+                  ? (
+                    <div>
+                      {wishlist.hotels.map((hotel) => (
+                        <WishlistHotelCard
+                          key={hotel.id}
+                          hotel={hotel}
+                          wishlistName={wishlist.name}
+                          onRemove={(hotelId) =>
+                            handleRemoveHotel(wishlist.name, hotelId)}
+                        />
+                      ))}
+                    </div>
+                  )
+                  : <p>No hotels in this wishlist</p>}
               </div>
             )}
           </div>

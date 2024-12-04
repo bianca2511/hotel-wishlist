@@ -1,11 +1,11 @@
 import { Router } from "jsr:@oak/oak/router";
-import data from "../data.json" with {type:"json"};
+import data from "../data.json" with { type: "json" };
 
 const wishlistRouter = new Router();
 const wishlists: Record<string, string[]> = {};
 
 wishlistRouter.post("/api/wishlists", async (context) => {
-  const body = context.request.body; 
+  const body = context.request.body;
   let value;
 
   if (body.type() === "json") {
@@ -29,7 +29,6 @@ wishlistRouter.post("/api/wishlists", async (context) => {
     message: `Wishlist "${name}" successfully created :)`,
   };
 });
-
 
 // Add hotel to a wishlist
 wishlistRouter.post("/api/wishlists/:name/:hotelID", (context) => {
@@ -66,40 +65,38 @@ wishlistRouter.post("/api/wishlists/:name/:hotelID", (context) => {
   };
 });
 
-
-
 // Remove a hotel from a wishlist
 wishlistRouter.delete("/api/wishlists/:name/:hotelId", (context) => {
-    const { name, hotelId } = context.params;
-  
-    if (!wishlists[name]) {
-      context.response.status = 404;
-      context.response.body = { error: "Wishlist not found" };
-      return;
-    }
-  
-    wishlists[name] = wishlists[name].filter((id) => id !== hotelId);
-    context.response.body = { message: `Hotel removed from wishlist "${name}".` };
-  });
+  const { name, hotelId } = context.params;
+
+  if (!wishlists[name]) {
+    context.response.status = 404;
+    context.response.body = { error: "Wishlist not found" };
+    return;
+  }
+
+  wishlists[name] = wishlists[name].filter((id) => id !== hotelId);
+  context.response.body = { message: `Hotel removed from wishlist "${name}".` };
+});
 
 //display a wishlist
 wishlistRouter.get("/api/wishlists/:name", (context) => {
-    const { name } = context.params;
-  
-    if (!wishlists[name]) {
-      context.response.status = 404;
-      context.response.body = { error: "Wishlist not found" };
-      return;
-    }
-  
-    const hotels = wishlists[name].map((id) =>
-      data.hotels.find((hotel) => hotel.id === parseInt(id))
-    );
-  
-    context.response.body = { name, hotels };
-  });
-  
-  export default wishlistRouter;
+  const { name } = context.params;
+
+  if (!wishlists[name]) {
+    context.response.status = 404;
+    context.response.body = { error: "Wishlist not found" };
+    return;
+  }
+
+  const hotels = wishlists[name].map((id) =>
+    data.hotels.find((hotel) => hotel.id === parseInt(id))
+  );
+
+  context.response.body = { name, hotels };
+});
+
+export default wishlistRouter;
 
 //display all wishlists
 wishlistRouter.get("/api/wishlists", (context) => {

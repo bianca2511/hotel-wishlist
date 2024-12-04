@@ -21,7 +21,8 @@
     "types": [
       "react",
       "react-dom",
-      "@types/react"
+      "@types/react",
+      "@types/react-dom"
     ],
     "lib": [
       "dom",

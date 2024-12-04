@@ -1,3 +1,4 @@
+// @deno-types="@types/react"
 import { useEffect, useState } from "react";
 import { HotelType } from "../types.ts";
 import { HotelCard } from "../components/HotelCard.tsx";

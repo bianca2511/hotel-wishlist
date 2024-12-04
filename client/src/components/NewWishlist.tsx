@@ -1,5 +1,6 @@
-import{ useState } from "react";
-import "../styles/NewWishlist.css"
+// @deno-types="@types/react"
+import { useState } from "react";
+import "../styles/NewWishlist.css";
 
 const NewWishlist: React.FC = () => {
   const [wishlistName, setWishlistName] = useState("");
@@ -29,7 +30,9 @@ const NewWishlist: React.FC = () => {
         placeholder="Enter wishlist name"
         className="new-input"
       />
-      <button onClick={newWishlist} className="submit-new-list">Create wishlist</button>
+      <button onClick={newWishlist} className="submit-new-list">
+        Create wishlist
+      </button>
     </div>
   );
 };

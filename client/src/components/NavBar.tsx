@@ -1,3 +1,4 @@
+// @deno-types="@types/react"
 import React from "react";
 import "../styles/NavBar.css";
 import { Link } from "react-router-dom";
@@ -16,7 +17,8 @@ const NavBar: React.FC = () => {
             <a href="/">Explore Hotels</a>
           </li>
           <li>
-            <Link to="/wishlists">Your Wishlists</Link>{" "}
+            <Link to="/wishlists">Your Wishlists</Link>
+            {" "}
           </li>
         </ul>
       </div>

@@ -1,3 +1,4 @@
+// @deno-types="@types/react"
 import React, { useState } from "react";
 import { HotelType, Wishlist } from "../types.ts";
 import "../styles/HotelCard.css";
@@ -28,10 +29,12 @@ export const HotelCard: React.FC<HotelCardProps> = ({
       const updatedWishlists: WishlistWithFlag[] = data.wishlists.map(
         (wishlist: Wishlist) => ({
           ...wishlist,
+          // name: wishlist.name,
+          // hotels: wishlist.hotels,
           containsHotel: wishlist.hotels.some(
-            (h: HotelType) => h.id === hotel.id
+            (h: HotelType) => h.id === hotel.id,
           ),
-        })
+        }),
       );
       setWishlists(updatedWishlists);
     } catch (error) {
@@ -43,7 +46,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({
   //add the hotel to a wishlist if not already added
   const addToWishlist = async (wishlistName: string) => {
     const wishlist = wishlists.find(
-      (w: { name: string }) => w.name === wishlistName
+      (w: { name: string }) => w.name === wishlistName,
     );
     if (wishlist?.containsHotel) {
       alert(`Hotel is already in wishlist "${wishlistName}"`);
@@ -56,7 +59,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-        }
+        },
       );
 
       if (!response.ok) {
@@ -120,22 +123,22 @@ export const HotelCard: React.FC<HotelCardProps> = ({
         </button>
         {showDropdown && (
           <div className="dropdown">
-            {wishlists.length > 0 ? (
-              wishlists.map((wishlist: WishlistWithFlag) => (
-                <div
-                  key={wishlist.name}
-                  className="dropdown-item"
-                  onClick={() => addToWishlist(wishlist.name)}
-                >
-                  {wishlist.name}
-                  {wishlist.containsHotel && (
-                    <span className="checkmark">✔️</span>
-                  )}
-                </div>
-              ))
-            ) : (
-              <div className="dropdown-item">No wishlists available</div>
-            )}
+            {wishlists.length > 0
+              ? (
+                wishlists.map((wishlist: WishlistWithFlag) => (
+                  <div
+                    key={wishlist.name}
+                    className="dropdown-item"
+                    onClick={() => addToWishlist(wishlist.name)}
+                  >
+                    {wishlist.name}
+                    {wishlist.containsHotel && (
+                      <span className="checkmark">✔️</span>
+                    )}
+                  </div>
+                ))
+              )
+              : <div className="dropdown-item">No wishlists available</div>}
           </div>
         )}
       </div>
