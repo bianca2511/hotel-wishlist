@@ -31,30 +31,41 @@ wishlistRouter.post("/api/wishlists", async (context) => {
 });
 
 
-//add hotel to a wishlist
-wishlistRouter.post("/api.wishlists/:name/hotel", async (context) => {
-  const { name } = context.params;
-  const body = context.request.body;
-  console.log(body.type());
-  const value = await body.text;
-  
-  const hotelId = Number(value);
-  
-  if(!wishlists[name]) {
-    context.response.status = 404;
-    context.response.body = {error : "wishlist not found"};
-  }
+// Add hotel to a wishlist
+wishlistRouter.post("/api/wishlists/:name/:hotelID", (context) => {
+  const { name, hotelID } = context.params;
 
-  const hotel = data.hotels.find((hotel) => hotel.id === hotelId);
-  if(!hotel) {
-    context.response.status = 404;
-    context.response.body = { error: "Hotel not found" };
+  if (!hotelID || isNaN(Number(hotelID))) {
+    context.response.status = 400;
+    context.response.body = { error: "Invalid or missing hotelID" };
     return;
   }
 
+  const hotelId = Number(hotelID);
+
+  // Check if the wishlist exists
+  if (!wishlists[name]) {
+    context.response.status = 404;
+    context.response.body = { error: `Wishlist "${name}" not found` };
+    return;
+  }
+
+  // Check if the hotel exists
+  const hotel = data.hotels.find((hotel) => hotel.id === hotelId);
+  if (!hotel) {
+    context.response.status = 404;
+    context.response.body = { error: `Hotel with ID "${hotelID}" not found` };
+    return;
+  }
+
+  // Add hotel to the wishlist
   wishlists[name].push(hotelId.toString());
-  context.response.body = { message: `Hotel "${hotel.name}" added to wishlist "${name}".` };
+  context.response.status = 200;
+  context.response.body = {
+    message: `Hotel "${hotel.name}" added to wishlist "${name}"`,
+  };
 });
+
 
 
 //remove a hotel from a wishlist

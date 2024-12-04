@@ -7,3 +7,12 @@ export type HotelType = {
     facilities: string[];
   };
   
+  export type Wishlist = {
+    name: string;
+    hotels: HotelType[];
+  }
+
+  export type WishlistWithFlag = Wishlist & {
+    containsHotel: boolean;
+  };
+  
