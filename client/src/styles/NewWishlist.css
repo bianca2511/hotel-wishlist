@@ -1,0 +1,14 @@
+.new-input {
+    border: 1px;
+    padding: 1em;
+    height: auto;
+}
+
+.submit-new-list {
+    font-size: large;
+    background-color: #ffb404;
+    border:1px;
+    padding: 0.5em;
+    margin-left: 1em;
+    border-radius: 8px;
+}
