@@ -21,6 +21,7 @@ hotelRouter.get("/api/hotels/:hotel", (context) => {
     item.name.toLowerCase() === hotel.toLowerCase()
   );
 
+  //nullish operator
   context.response.body = foundHotel ?? "No hotel found.";
 });
 

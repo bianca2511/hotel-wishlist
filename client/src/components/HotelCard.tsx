@@ -17,7 +17,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({
   const [wishlists, setWishlists] = useState<WishlistWithFlag[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  //fetch wishlists with a flag indicating if the hotel is already added
+  // Fetch wishlists with a flag indicating if the hotel is already added
   const fetchWishlists = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/wishlists");
@@ -43,11 +43,12 @@ export const HotelCard: React.FC<HotelCardProps> = ({
     }
   };
 
-  //add the hotel to a wishlist if not already added
+  // Add the hotel to a wishlist if not already added
   const addToWishlist = async (wishlistName: string) => {
     const wishlist = wishlists.find(
       (w: { name: string }) => w.name === wishlistName,
     );
+    // If wishlist exists, check if it contains the hotel
     if (wishlist?.containsHotel) {
       alert(`Hotel is already in wishlist "${wishlistName}"`);
       return;
@@ -82,7 +83,7 @@ export const HotelCard: React.FC<HotelCardProps> = ({
     }
   };
 
-  //toggle the dropdown visibility and fetch wishlists if needed
+  // Toggle the dropdown visibility and fetch wishlists if needed
   const handleDropdownToggle = async () => {
     if (!showDropdown) {
       await fetchWishlists();

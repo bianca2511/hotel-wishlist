@@ -4,10 +4,10 @@ import data from "../data.json" with { type: "json" };
 const wishlistRouter = new Router();
 const wishlists: Record<string, string[]> = {};
 
+// Create new wishlist
 wishlistRouter.post("/api/wishlists", async (context) => {
   const body = context.request.body;
   let value;
-
   if (body.type() === "json") {
     value = await body.json(); //parse the body of the request as JSON
   } else {
@@ -69,17 +69,19 @@ wishlistRouter.post("/api/wishlists/:name/:hotelID", (context) => {
 wishlistRouter.delete("/api/wishlists/:name/:hotelId", (context) => {
   const { name, hotelId } = context.params;
 
+  // Check if the wishlist exists
   if (!wishlists[name]) {
     context.response.status = 404;
     context.response.body = { error: "Wishlist not found" };
     return;
   }
 
+  // Filter out hotel from wishlist
   wishlists[name] = wishlists[name].filter((id) => id !== hotelId);
   context.response.body = { message: `Hotel removed from wishlist "${name}".` };
 });
 
-//display a wishlist
+// Display a specific wishlist
 wishlistRouter.get("/api/wishlists/:name", (context) => {
   const { name } = context.params;
 
@@ -96,9 +98,7 @@ wishlistRouter.get("/api/wishlists/:name", (context) => {
   context.response.body = { name, hotels };
 });
 
-export default wishlistRouter;
-
-//display all wishlists
+// Display all wishlists
 wishlistRouter.get("/api/wishlists", (context) => {
   if (Object.keys(wishlists).length === 0) {
     context.response.status = 404;
@@ -106,7 +106,7 @@ wishlistRouter.get("/api/wishlists", (context) => {
     return;
   }
 
-  //show all wishlists and the hotel ids they contain
+  // Show all wishlists and the hotel IDs they contain
   const response = Object.entries(wishlists).map(([name, hotelIds]) => ({
     name,
     hotels: hotelIds.map((id) =>
@@ -117,3 +117,5 @@ wishlistRouter.get("/api/wishlists", (context) => {
   context.response.status = 200;
   context.response.body = { wishlists: response };
 });
+
+export default wishlistRouter;
